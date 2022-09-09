@@ -3,6 +3,7 @@ package com.tw.cn.graduate.TianLe;
 import java.util.Arrays;
 import java.util.List;
 
+//该方法会返回一个不超过给定长度的流。
 public class LimitUsage {
     public static List<Integer> limitListBy2(List<Integer> integers ){
         return integers.stream().limit(2).toList();

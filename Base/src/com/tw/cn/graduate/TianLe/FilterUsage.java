@@ -3,6 +3,7 @@ package com.tw.cn.graduate.TianLe;
 import java.util.Arrays;
 import java.util.List;
 
+//该操作会接受一个谓词（一个返回boolean的函数）作为参数，并返回一个包括所有符合谓词的元素的流。
 public class FilterUsage {
     //截取所有能被2整除得数据
     public static List<Integer> filterMultiplesOf2(List<Integer> integers ){
