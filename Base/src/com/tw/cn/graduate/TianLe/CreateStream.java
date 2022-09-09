@@ -11,9 +11,15 @@ public class CreateStream {
         Stream<String> stream = Stream.of(array);
     }
 
-    //List集合转Stream
+    //List集合转Stream流
     private static void createStreamByList(){
         List<String> list = Arrays.asList("a", "b", "c");
         Stream<String> stream = list.stream();
+    }
+
+    //List集合转并行流
+    private void createParallelStreamByList(){
+        List<String> list = Arrays.asList("a", "b", "c");
+        Stream<String> stream = list.parallelStream();
     }
 }
