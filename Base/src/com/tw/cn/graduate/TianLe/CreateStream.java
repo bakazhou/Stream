@@ -17,6 +17,7 @@ public class CreateStream {
         Stream<String> stream = list.stream();
     }
 
+    //注意：并行流并不一定比普通的流快，因为涉及到多核的调度，消耗的内存更多，同时也可能会变得更慢
     //List集合转并行流
     private void createParallelStreamByList(){
         List<String> list = Arrays.asList("a", "b", "c");
