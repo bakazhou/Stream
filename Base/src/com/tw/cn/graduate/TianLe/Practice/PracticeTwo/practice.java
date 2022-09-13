@@ -3,6 +3,7 @@ package com.tw.cn.graduate.TianLe.Practice.PracticeTwo;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class practice {
@@ -25,6 +26,9 @@ public class practice {
 
     private static void printAllTraderValueAtCambridge(List<Transaction> transactions) {
         transactions.stream().filter(transaction -> transaction.getTrader().getCity().equals("Cambridge")).map(Transaction::getValue).forEach(System.out::println);
+    }
+    private static Optional<Integer> getMaxValue(List<Transaction> transactions) {
+        return transactions.stream().max(Comparator.comparing(Transaction::getValue)).map(Transaction::getValue);
     }
     public static void main(String[] args) {
         //set up
@@ -64,9 +68,12 @@ public class practice {
         //打印生活在剑桥的交易员的所有交易额
         printAllTraderValueAtCambridge(transactions);
 
+        //所有交易中，最高的交易额是多少
+        Optional<Integer> maxValue = getMaxValue(transactions);
+        System.out.println("maxValue:"+maxValue.get());
+
 
     }
-
 
 
 }
