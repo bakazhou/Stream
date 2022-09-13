@@ -15,6 +15,10 @@ public class practice {
     private static List<Trader> getCambridgeTraders(List<Transaction> transactions) {
         return transactions.stream().map(Transaction::getTrader).filter(trader -> trader.getCity().equals("Cambridge")).sorted(Comparator.comparing(Trader::getName)).collect(Collectors.toList());
     }
+
+    private static List<String> getAllTraderNames(List<Transaction> transactions) {
+        return transactions.stream().map(Transaction::getTrader).distinct().sorted(Comparator.comparing(Trader::getName)).map(Trader::getName).collect(Collectors.toList());
+    }
     public static void main(String[] args) {
         //set up
         Trader raoul = new Trader("Raoul", "Cambridge");
@@ -40,6 +44,14 @@ public class practice {
 
         //找出所有来自剑桥的交易员，并按姓名排序
         List<Trader> cambridgeTraders = getCambridgeTraders(transactions);
+        System.out.println("cambridgeTraders:"+cambridgeTraders);
+
+        //返回所有交易员的姓名字符串，按字母顺序排序
+        List<String> allTraderNames = getAllTraderNames(transactions);
+        System.out.println("allTraderNames:"+allTraderNames);
+
+
     }
+
 
 }
