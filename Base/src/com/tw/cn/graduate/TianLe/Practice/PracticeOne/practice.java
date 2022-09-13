@@ -3,7 +3,7 @@ package com.tw.cn.graduate.TianLe.Practice.PracticeOne;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class practice {
     private static List<Integer> getSquaresList(List<Integer> numbers) {
@@ -18,11 +18,14 @@ public class practice {
         return numbers1.stream().flatMap(i -> numbers2.stream().filter(j -> (i + j) % 3 == 0).map(j -> new int[]{i, j})).toList();
     }
 
-    private static Stream<String> getCalorieMoreThan300Dishes(List<Dish> menu) {
-        return menu.stream().filter(dish -> dish.getCalories() > 300).map(Dish::getName);
+    private static List<String> getCalorieMoreThan300Dishes(List<Dish> menu) {
+        return menu.stream().filter(dish -> dish.getCalories() > 300).map(Dish::getName).limit(3).collect(Collectors.toList());
     }
     private static List<String> getVegetarianDishes(List<Dish> menu) {
         return menu.stream().filter(Dish::isVegetarian).map(Dish::getName).toList();
+    }
+    private static List<String> getGetCalorieMoreThan300AndIsNotVegetarianDishes(List<Dish> menu) {
+        return menu.stream().filter(dish -> dish.getCalories() > 300).filter(dish -> !dish.isVegetarian()).map(Dish::getName).limit(2).collect(Collectors.toList());
     }
     public static void main(String[] args) {
         
@@ -53,10 +56,12 @@ public class practice {
                 new Dish("salmon", false, 450, Dish.Type.FISH));
 
         //获取卡路里大于300的前三道菜肴的名字集合
-        Stream<String> calorieMoreThan300Dishes = getCalorieMoreThan300Dishes(menu);
+        List<String> calorieMoreThan300Dishes = getCalorieMoreThan300Dishes(menu);
 
         //获取所有属于青菜类别的菜名集合
         List<String> vegetarianDishes = getVegetarianDishes(menu);
 
+        //获取卡路里大于300的前两个荤菜名字集合
+        List<String> calorieMoreThan300AndIsNotVegetarianDishes = getGetCalorieMoreThan300AndIsNotVegetarianDishes(menu);
     }
 }
