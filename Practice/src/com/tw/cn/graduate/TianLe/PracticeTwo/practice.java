@@ -1,4 +1,4 @@
-package com.tw.cn.graduate.TianLe.Practice.PracticeTwo;
+package com.tw.cn.graduate.TianLe.PracticeTwo;
 
 import java.util.*;
 import java.util.stream.Collectors;

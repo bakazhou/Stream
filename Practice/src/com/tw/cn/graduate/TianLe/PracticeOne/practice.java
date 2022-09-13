@@ -1,4 +1,4 @@
-package com.tw.cn.graduate.TianLe.Practice.PracticeOne;
+package com.tw.cn.graduate.TianLe.PracticeOne;
 
 
 import java.util.*;

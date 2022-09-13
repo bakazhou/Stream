@@ -1,4 +1,4 @@
-package com.tw.cn.graduate.TianLe.Practice.PracticeTwo;
+package com.tw.cn.graduate.TianLe.PracticeTwo;
 
 public class Trader {
     private final String name;

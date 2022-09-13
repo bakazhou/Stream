@@ -1,4 +1,4 @@
-package com.tw.cn.graduate.TianLe.Practice.PracticeOne;
+package com.tw.cn.graduate.TianLe.PracticeOne;
 
 public class Dish {
     private final String name;
