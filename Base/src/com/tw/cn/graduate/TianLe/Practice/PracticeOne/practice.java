@@ -27,6 +27,9 @@ public class practice {
     private static List<String> getGetCalorieMoreThan300AndIsNotVegetarianDishes(List<Dish> menu) {
         return menu.stream().filter(dish -> dish.getCalories() > 300).filter(dish -> !dish.isVegetarian()).map(Dish::getName).limit(2).collect(Collectors.toList());
     }
+    private static boolean isAllDishesCaloriesLowerThan1000(List<Dish> menu) {
+        return menu.stream().allMatch(dish -> dish.getCalories() <= 1000);
+    }
     public static void main(String[] args) {
         
         //set up
@@ -63,5 +66,8 @@ public class practice {
 
         //获取卡路里大于300的前两个荤菜名字集合
         List<String> calorieMoreThan300AndIsNotVegetarianDishes = getGetCalorieMoreThan300AndIsNotVegetarianDishes(menu);
+
+        //判断是否所有菜的热量都低于1000卡路里
+        boolean isAllDishesCaloriesLowerThan1000 = isAllDishesCaloriesLowerThan1000(menu);
     }
 }
