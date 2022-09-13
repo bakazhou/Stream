@@ -22,6 +22,10 @@ public class practice {
     private static boolean isTraderAtMilan(List<Transaction> transactions) {
         return transactions.stream().map(Transaction::getTrader).anyMatch(trader -> trader.getCity().equals("Milan"));
     }
+
+    private static void printAllTraderValueAtCambridge(List<Transaction> transactions) {
+        transactions.stream().filter(transaction -> transaction.getTrader().getCity().equals("Cambridge")).map(Transaction::getValue).forEach(System.out::println);
+    }
     public static void main(String[] args) {
         //set up
         Trader raoul = new Trader("Raoul", "Cambridge");
@@ -57,8 +61,12 @@ public class practice {
         boolean isTraderAtMilan = isTraderAtMilan(transactions);
         System.out.println("isTraderAtMilan:"+isTraderAtMilan);
 
+        //打印生活在剑桥的交易员的所有交易额
+        printAllTraderValueAtCambridge(transactions);
+
 
     }
+
 
 
 }
