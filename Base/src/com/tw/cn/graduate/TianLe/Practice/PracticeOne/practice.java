@@ -41,6 +41,9 @@ public class practice {
     private static Map<Dish.Type, List<Dish>> getTypeListMap(List<Dish> menu) {
         return menu.stream().collect(Collectors.groupingBy(Dish::getType));
     }
+    private static Map<Dish.Type, Optional<Dish>> getMaxCaloriesDishByType(List<Dish> menu) {
+        return menu.stream().collect(Collectors.groupingBy(Dish::getType, Collectors.maxBy(Comparator.comparing(Dish::getCalories))));
+    }
     public static void main(String[] args) {
         
         //set up
@@ -50,13 +53,12 @@ public class practice {
         
         //(1) 给定一个数字列表，如何返回一个由每个数的平方构成的列表呢?例如，给定[1, 2, 3, 4,5]，应该返回[1, 4, 9, 16, 25]。
         List<Integer> squaresList = getSquaresList(numbers);
+        System.out.println("squaresList:"+squaresList);
         
         //(2) 给定两个数字列表，如何返回所有的数对呢?例如，给定列表[1, 2, 3]和列表[3, 4]，应 该返回[(1, 3), (1, 4), (2, 3), (2, 4), (3, 3), (3, 4)]。为简单起见，你可以用有两个元素的数组来代表数对。
         List<int[]> arrays = getArrays(numbers1, numbers2);
-
         //(3) 如何扩展前一个例子，只返回总和能被3整除的数对呢?例如(2, 4)和(3, 3)是可以的。
         List<int[]> arraysMultiplesOfThree = getArraysMultiplesOfThree(numbers1, numbers2);
-
         //set up
         List<Dish> menu = Arrays.asList(
                 new Dish("pork", false, 800, Dish.Type.MEAT),
@@ -71,26 +73,31 @@ public class practice {
 
         //获取卡路里大于300的前三道菜肴的名字集合
         List<String> calorieMoreThan300Dishes = getCalorieMoreThan300Dishes(menu);
-
+        System.out.println("calorieMoreThan300Dishes:"+calorieMoreThan300Dishes);
         //获取所有属于青菜类别的菜名集合
         List<String> vegetarianDishes = getVegetarianDishes(menu);
-
+        System.out.println("vegetarianDishes:"+vegetarianDishes);
         //获取卡路里大于300的前两个荤菜名字集合
         List<String> calorieMoreThan300AndIsNotVegetarianDishes = getGetCalorieMoreThan300AndIsNotVegetarianDishes(menu);
-
+        System.out.println("calorieMoreThan300AndIsNotVegetarianDishes:"+calorieMoreThan300AndIsNotVegetarianDishes);
         //判断是否所有菜的热量都低于1000卡路里
         boolean isAllDishesCaloriesLowerThan1000 = isAllDishesCaloriesLowerThan1000(menu);
-
+        System.out.println("isAllDishesCaloriesLowerThan1000:"+isAllDishesCaloriesLowerThan1000);
         //判断是否有菜的热量高于1000卡路里
         boolean unHealthy = isAnyDishCaloriesMoreThan1000(menu);
-
+        System.out.println("isAnyDishCaloriesMoreThan1000:"+unHealthy);
         //获取所有菜中热量最高的菜的名字
         Optional<String> maxCaloriesDishName = getMaxCaloriesDishName(menu);
-
+        System.out.println("maxCaloriesDishName:"+maxCaloriesDishName.get());
         //获取素菜中热量最高的素菜的名字
         Optional<String> maxCaloriesVegetarianDishName = getMaxCaloriesVegetarianDishName(menu);
-
+        System.out.println("maxCaloriesVegetarianDishName:"+maxCaloriesVegetarianDishName);
         //通过菜品的种类对所有的菜品进行分类，并获取集合
         Map<Dish.Type, List<Dish>> typeListMap = getTypeListMap(menu);
+        System.out.println("typeListMap:"+typeListMap);
+        //获取三种菜品分类中热量的最高的菜品，并按照类型进行分类
+        Map<Dish.Type, Optional<Dish>> maxCaloriesDishByType = getMaxCaloriesDishByType(menu);
+        System.out.println("maxCaloriesDishByType:"+maxCaloriesDishByType);
     }
+
 }
