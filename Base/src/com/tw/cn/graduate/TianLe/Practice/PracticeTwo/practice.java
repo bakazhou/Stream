@@ -37,6 +37,9 @@ public class practice {
     private static Optional<Integer> getMinValue(List<Transaction> transactions) {
         return transactions.stream().map(Transaction::getValue).reduce(Integer::min);
     }
+    private static int getSumValue(List<Transaction> transactions) {
+        return transactions.stream().mapToInt(Transaction::getValue).sum();
+    }
     public static void main(String[] args) {
         //set up
         Trader raoul = new Trader("Raoul", "Cambridge");
@@ -82,5 +85,10 @@ public class practice {
         //找到交易额最小的交易
         Optional<Integer> minValue = getMinValue(transactions);
         System.out.println("minValue:"+minValue.get());
+
+        //计算总交易额
+        int sumValue = getSumValue(transactions);
+        System.out.println("sumValue:"+sumValue);
     }
+
 }
