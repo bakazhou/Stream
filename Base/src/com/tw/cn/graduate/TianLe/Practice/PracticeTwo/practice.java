@@ -40,6 +40,9 @@ public class practice {
     private static Map<String, List<Transaction>> getGroupByTraderName(List<Transaction> transactions) {
         return transactions.stream().collect(Collectors.groupingBy(transaction -> transaction.getTrader().getName()));
     }
+    private static Map<Integer, List<Transaction>> getGroupByYear(List<Transaction> transactions) {
+        return transactions.stream().sorted(Comparator.comparing(Transaction::getYear)).collect(Collectors.groupingBy(Transaction::getYear));
+    }
     public static void main(String[] args) {
         //set up
         Trader raoul = new Trader("Raoul", "Cambridge");
@@ -93,6 +96,10 @@ public class practice {
         //按照交易员的名字对交易进行分组
         Map<String, List<Transaction>> groupByTraderName = getGroupByTraderName(transactions);
         System.out.println("groupByTraderName:"+groupByTraderName);
+
+        //按照订单年份进行排序并分类
+        Map<Integer, List<Transaction>> groupByYear = getGroupByYear(transactions);
+        System.out.println("groupByYear:"+groupByYear);
     }
 
 }
