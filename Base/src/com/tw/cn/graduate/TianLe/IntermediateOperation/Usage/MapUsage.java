@@ -1,5 +1,7 @@
 package com.tw.cn.graduate.TianLe.IntermediateOperation.Usage;
 
+import com.tw.cn.graduate.TianLe.IntermediateOperation.Usage.entity.Task;
+
 import java.util.List;
 
 //该方法会接受一个函数作为参数，这个函数会被应用到每个元素上，并将其映射成一个新的元素。就是根据指定函数获取流中得每个元素得数据并重新组合成一个新的元素。

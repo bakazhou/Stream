@@ -1,4 +1,4 @@
-package com.tw.cn.graduate.TianLe.IntermediateOperation.Usage;
+package com.tw.cn.graduate.TianLe.IntermediateOperation.Usage.entity;
 
 public class Task {
     public Task(String name, Integer id) {
