@@ -1,9 +1,6 @@
 package com.tw.cn.graduate.TianLe.Practice.PracticeTwo;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class practice {
@@ -39,6 +36,9 @@ public class practice {
     }
     private static int getSumValue(List<Transaction> transactions) {
         return transactions.stream().mapToInt(Transaction::getValue).sum();
+    }
+    private static Map<String, List<Transaction>> getGroupByTraderName(List<Transaction> transactions) {
+        return transactions.stream().collect(Collectors.groupingBy(transaction -> transaction.getTrader().getName()));
     }
     public static void main(String[] args) {
         //set up
@@ -89,6 +89,10 @@ public class practice {
         //计算总交易额
         int sumValue = getSumValue(transactions);
         System.out.println("sumValue:"+sumValue);
+
+        //按照交易员的名字对交易进行分组
+        Map<String, List<Transaction>> groupByTraderName = getGroupByTraderName(transactions);
+        System.out.println("groupByTraderName:"+groupByTraderName);
     }
 
 }
