@@ -30,6 +30,9 @@ public class practice {
     private static boolean isAllDishesCaloriesLowerThan1000(List<Dish> menu) {
         return menu.stream().allMatch(dish -> dish.getCalories() <= 1000);
     }
+    private static boolean isAnyDishCaloriesMoreThan1000(List<Dish> menu) {
+        return menu.stream().noneMatch(dish -> dish.getCalories() >= 1000);
+    }
     public static void main(String[] args) {
         
         //set up
@@ -69,5 +72,10 @@ public class practice {
 
         //判断是否所有菜的热量都低于1000卡路里
         boolean isAllDishesCaloriesLowerThan1000 = isAllDishesCaloriesLowerThan1000(menu);
+
+        //判断是否有菜的热量高于1000卡路里
+        boolean unHealthy = isAnyDishCaloriesMoreThan1000(menu);
+
+
     }
 }
