@@ -1,6 +1,7 @@
 package com.tw.cn.graduate.TianLe.Practice.PracticeTwo;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,9 @@ public class practice {
     }
     private static List<String> getTraderDifCity(List<Transaction> transactions) {
         return transactions.stream().map(Transaction::getTrader).map(Trader::getCity).distinct().collect(Collectors.toList());
+    }
+    private static List<Trader> getCambridgeTraders(List<Transaction> transactions) {
+        return transactions.stream().map(Transaction::getTrader).filter(trader -> trader.getCity().equals("Cambridge")).sorted(Comparator.comparing(Trader::getName)).collect(Collectors.toList());
     }
     public static void main(String[] args) {
         //set up
@@ -33,6 +37,9 @@ public class practice {
         //找出交易员都在哪些不同的城市工作过
         List<String> city = getTraderDifCity(transactions);
         System.out.println("city:"+city);
+
+        //找出所有来自剑桥的交易员，并按姓名排序
+        List<Trader> cambridgeTraders = getCambridgeTraders(transactions);
     }
 
 }
