@@ -21,6 +21,9 @@ public class practice {
     private static Stream<String> getCalorieMoreThan300Dishes(List<Dish> menu) {
         return menu.stream().filter(dish -> dish.getCalories() > 300).map(Dish::getName);
     }
+    private static List<String> getVegetarianDishes(List<Dish> menu) {
+        return menu.stream().filter(Dish::isVegetarian).map(Dish::getName).toList();
+    }
     public static void main(String[] args) {
         
         //set up
@@ -49,7 +52,11 @@ public class practice {
                 new Dish("prawns", false, 300, Dish.Type.FISH),
                 new Dish("salmon", false, 450, Dish.Type.FISH));
 
-        //获取卡路里大于300的前三道菜肴的名字
+        //获取卡路里大于300的前三道菜肴的名字集合
         Stream<String> calorieMoreThan300Dishes = getCalorieMoreThan300Dishes(menu);
+
+        //获取所有属于青菜类别的菜名集合
+        List<String> vegetarianDishes = getVegetarianDishes(menu);
+
     }
 }
