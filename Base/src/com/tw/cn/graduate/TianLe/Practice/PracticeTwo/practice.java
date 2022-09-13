@@ -19,6 +19,9 @@ public class practice {
     private static List<String> getAllTraderNames(List<Transaction> transactions) {
         return transactions.stream().map(Transaction::getTrader).distinct().sorted(Comparator.comparing(Trader::getName)).map(Trader::getName).collect(Collectors.toList());
     }
+    private static boolean isTraderAtMilan(List<Transaction> transactions) {
+        return transactions.stream().map(Transaction::getTrader).anyMatch(trader -> trader.getCity().equals("Milan"));
+    }
     public static void main(String[] args) {
         //set up
         Trader raoul = new Trader("Raoul", "Cambridge");
@@ -49,6 +52,10 @@ public class practice {
         //返回所有交易员的姓名字符串，按字母顺序排序
         List<String> allTraderNames = getAllTraderNames(transactions);
         System.out.println("allTraderNames:"+allTraderNames);
+
+        //有没有交易员是在米兰工作的
+        boolean isTraderAtMilan = isTraderAtMilan(transactions);
+        System.out.println("isTraderAtMilan:"+isTraderAtMilan);
 
 
     }
