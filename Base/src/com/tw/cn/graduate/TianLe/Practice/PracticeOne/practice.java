@@ -4,6 +4,8 @@ package com.tw.cn.graduate.TianLe.Practice.PracticeOne;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.partitioningBy;
+
 public class practice {
     private static List<Integer> getSquaresList(List<Integer> numbers) {
         return numbers.stream().map(number -> number * number).toList();
@@ -43,6 +45,9 @@ public class practice {
     }
     private static Map<Dish.Type, Optional<Dish>> getMaxCaloriesDishByType(List<Dish> menu) {
         return menu.stream().collect(Collectors.groupingBy(Dish::getType, Collectors.maxBy(Comparator.comparing(Dish::getCalories))));
+    }
+    private static Map<Boolean, List<Dish>> getGroupByIsVegetarian(List<Dish> menu) {
+        return menu.stream().collect(partitioningBy(Dish::isVegetarian));
     }
     public static void main(String[] args) {
         
@@ -98,6 +103,9 @@ public class practice {
         //获取三种菜品分类中热量的最高的菜品，并按照类型进行分类
         Map<Dish.Type, Optional<Dish>> maxCaloriesDishByType = getMaxCaloriesDishByType(menu);
         System.out.println("maxCaloriesDishByType:"+maxCaloriesDishByType);
+        //将菜品通过是否是蔬菜进行区分
+        Map<Boolean, List<Dish>> groupByIsVegetarian = getGroupByIsVegetarian(menu);
+        System.out.println("groupByIsVegetarian:"+groupByIsVegetarian);
     }
 
 }
