@@ -1,12 +1,8 @@
 package com.tw.cn.graduate.TianLe.Practice.PracticeOne;
 
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class practice {
     private static List<Integer> getSquaresList(List<Integer> numbers) {
@@ -39,9 +35,11 @@ public class practice {
     private static Optional<String> getMaxCaloriesDishName(List<Dish> menu) {
         return menu.stream().max(Comparator.comparing(Dish::getCalories)).map(Dish::getName);
     }
-
-    private static Optional<String> getMaxCaloriesVegetarianDishName(Stream<Dish> menu) {
-        return menu.max(Comparator.comparing(Dish::getCalories)).map(Dish::getName);
+    private static Optional<String> getMaxCaloriesVegetarianDishName(List<Dish> menu) {
+        return menu.stream().filter(Dish::isVegetarian).max(Comparator.comparing(Dish::getCalories)).map(Dish::getName);
+    }
+    private static Map<Dish.Type, List<Dish>> getTypeListMap(List<Dish> menu) {
+        return menu.stream().collect(Collectors.groupingBy(Dish::getType));
     }
     public static void main(String[] args) {
         
@@ -90,7 +88,9 @@ public class practice {
         Optional<String> maxCaloriesDishName = getMaxCaloriesDishName(menu);
 
         //获取素菜中热量最高的素菜的名字
-        Optional<String> maxCaloriesVegetarianDishName = getMaxCaloriesVegetarianDishName(menu.stream().filter(Dish::isVegetarian));
-    }
+        Optional<String> maxCaloriesVegetarianDishName = getMaxCaloriesVegetarianDishName(menu);
 
+        //通过菜品的种类对所有的菜品进行分类，并获取集合
+        Map<Dish.Type, List<Dish>> typeListMap = getTypeListMap(menu);
+    }
 }
