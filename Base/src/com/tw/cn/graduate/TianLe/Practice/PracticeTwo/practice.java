@@ -8,6 +8,9 @@ public class practice {
     private static List<Transaction> getBefore2011TransActionList(List<Transaction> transactions) {
         return transactions.stream().filter(transaction -> transaction.getYear() == 2011).sorted((t1, t2) -> t1.getValue() >= t2.getValue() ? 1 : -1).collect(Collectors.toList());
     }
+    private static List<String> getTraderDifCity(List<Transaction> transactions) {
+        return transactions.stream().map(Transaction::getTrader).map(Trader::getCity).distinct().collect(Collectors.toList());
+    }
     public static void main(String[] args) {
         //set up
         Trader raoul = new Trader("Raoul", "Cambridge");
@@ -27,7 +30,9 @@ public class practice {
         List<Transaction> before2011TransActionList = getBefore2011TransActionList(transactions);
         System.out.println("before2011TransActionList:"+before2011TransActionList);
 
-
+        //找出交易员都在哪些不同的城市工作过
+        List<String> city = getTraderDifCity(transactions);
+        System.out.println("city:"+city);
     }
 
 }
